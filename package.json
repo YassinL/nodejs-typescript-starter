@@ -1,0 +1,28 @@
+{
+  "name": "nodejs-typescript-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npx tsc -w",
+    "dev": "nodemon dist/index.js",
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YassinL/nodejs-typescript-starter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YassinL/nodejs-typescript-starter/issues"
+  },
+  "homepage": "https://github.com/YassinL/nodejs-typescript-starter#readme",
+  "devDependencies": {
+    "@types/node": "^15.0.2",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.4"
+  }
+}
