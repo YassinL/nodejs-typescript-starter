@@ -1,1 +1,3 @@
-console.log("Hello World !");
+import { createServer } from "./app/http/app";
+
+createServer();

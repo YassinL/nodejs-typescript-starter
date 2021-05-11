@@ -1,0 +1,132 @@
+interface ISkill {
+  name: string;
+  description: string;
+  optionProp?: number;
+  getSkill: () => string;
+  getDescription: () => string;
+}
+
+type skillProps = {
+  name: string;
+  description: string;
+  optionProp?: number;
+};
+
+class Skill implements ISkill {
+  public name: string;
+  public description: string;
+  public optionProp?: number;
+
+  constructor(props: skillProps) {
+    this.name = props.name;
+    this.description = props.description;
+    this.optionProp = props.optionProp;
+  }
+
+  public getSkill(): string {
+    return `Skill : ${this.name}`;
+  }
+
+  public getDescription(): string {
+    return `Description : ${this.description}`;
+  }
+}
+
+const skill1Props = {
+  name: "Collaborer à la gestion...",
+  description: "Collaborer à la gestion description ...",
+};
+
+const skill1: Skill = new Skill(skill1Props);
+
+console.log(skill1.getSkill());
+
+// Category
+interface ICatgeory {
+  name: string;
+  description: string;
+}
+
+type categoryProps = {
+  name: string;
+  description: string;
+};
+
+class Category implements ICatgeory {
+  public name: string;
+  public description: string;
+
+  constructor(props: categoryProps) {
+    this.name = props.name;
+    this.description = props.description;
+  }
+}
+
+// User
+
+interface IUser {
+  firstname: string;
+  lastname: string;
+}
+
+type userProps = {
+  firstname: string;
+  lastname: string;
+};
+
+class User implements IUser {
+  public firstname: string;
+  public lastname: string;
+
+  constructor(props: userProps) {
+    this.firstname = props.firstname;
+    this.lastname = props.lastname;
+  }
+}
+
+// Level
+
+interface ILevel {
+  numberLevel: number;
+  name: string;
+}
+
+type levelProps = {
+  numberLevel: number;
+  name: string;
+};
+
+class Level implements ILevel {
+  public numberLevel: number;
+  public name: string;
+
+  constructor(props: levelProps) {
+    this.numberLevel = props.numberLevel;
+    this.name = props.name;
+  }
+}
+
+// Progress
+interface IProgress {
+  skill: Skill;
+  user: User;
+  level: Level;
+}
+
+type progressProps = {
+  skill: Skill;
+  user: User;
+  level: Level;
+};
+
+class Progress implements IProgress {
+  public skill: Skill;
+  public user: User;
+  public level: Level;
+
+  constructor(props: progressProps) {
+    this.skill = props.skill;
+    this.user = props.user;
+    this.level = props.level;
+  }
+}
