@@ -13,9 +13,9 @@ export const __prod__ = NODE_ENV === "production";
 export const API_BASE_URL = process.env.API_BASE_URL || "/api/v1/";
 
 //Database credentials
-export const DB_DIALECT = process.env.DB_DIALECT || "skill_tree";
+export const DB_DIALECT = process.env.DB_DIALECT || "mysql";
 export const DB_DATABASE = process.env.DB_DATABASE || "skill_tree";
 export const DB_USERNAME = process.env.DB_USERNAME || "root";
 export const DB_PASSWORD = process.env.DB_PASSWORD || "rootYassin";
 export const DB_HOST = process.env.DB_HOST || "localhost";
-export const DB_PORT = process.env.DB_PORT || 3306;
+export const DB_PORT = parseInt(process.env.DB_PORT as string) || 3306;

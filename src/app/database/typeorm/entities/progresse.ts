@@ -6,9 +6,9 @@ import {
   JoinColumn,
   ManyToOne,
 } from "typeorm";
-import { Level } from "./level";
-import { Skill } from "./skill";
 import { User } from "./user";
+import { Skill } from "./skill";
+import { Level } from "./level";
 
 @Entity()
 export class Progresse {
@@ -21,13 +21,13 @@ export class Progresse {
   @PrimaryColumn()
   levelId: number;
 
-  @ManyToOne(() => Skill, (skill) => skill.progresses, { primary: true })
-  @JoinColumn({ name: "skillId" })
-  skill: Skill;
-
   @ManyToOne(() => User, (user) => user.progresses, { primary: true })
   @JoinColumn({ name: "userId" })
   user: User;
+
+  @ManyToOne(() => Skill, (skill) => skill.progresses, { primary: true })
+  @JoinColumn({ name: "skillId" })
+  skill: Skill;
 
   @ManyToOne(() => Level, (level) => level.progresses, { primary: true })
   @JoinColumn({ name: "levelId" })

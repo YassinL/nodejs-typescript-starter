@@ -9,7 +9,7 @@ import {
   OneToMany,
 } from "typeorm";
 import { Category } from "./category";
-import { Progresse } from "./progress";
+import { Progresse } from "./progresse";
 
 @Entity()
 export class Skill {
@@ -26,11 +26,11 @@ export class Skill {
   })
   description: string;
 
-  @ManyToOne((type) => Category, (category) => category.skills)
+  @ManyToOne(() => Category, (category) => category.skills)
   @JoinColumn({ name: "categoryId" })
   category: Category;
 
-  @OneToMany((type) => Progresse, (progresse) => progresse.skill)
+  @OneToMany(() => Progresse, (progresse) => progresse.skill)
   progresses: Progresse[];
 
   @CreateDateColumn()

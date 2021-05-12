@@ -6,8 +6,14 @@ import { API_BASE_URL } from "../../constant";
 import swaggerConfig from "../../middlewares/documentation/swagger.json";
 import swaggerUi from "swagger-ui-express";
 
+//Logger
+import morgan from "morgan";
+
 export const createServer = async (): Promise<express.Application> => {
   const app: express.Application = express();
+
+  app.use(express.json());
+  app.use(morgan("combined"));
 
   app.use(`${API_BASE_URL}`, v1Router);
 

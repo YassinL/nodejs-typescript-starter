@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from "typeorm";
-import { Progresse } from "./progress";
+import { Progresse } from "./progresse";
 
 @Entity()
 export class Level {
@@ -24,7 +24,7 @@ export class Level {
   })
   name: string;
 
-  @OneToMany((type) => Progresse, (progresse) => progresse.level)
+  @OneToMany(() => Progresse, (progresse) => progresse.level)
   progresses: Progresse[];
 
   @CreateDateColumn()

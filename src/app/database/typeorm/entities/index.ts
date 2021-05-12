@@ -1,6 +1,10 @@
 import { User } from "./user";
 import { Skill } from "./skill";
-import { Level } from "./level";
 import { Category } from "./category";
+import { Level } from "./level";
+import { Progresse } from "./progresse";
 
-export const entities = [User, Skill, Level, Category];
+const entities = [User, Skill, Level, Category, Progresse];
+const entitiesObject = { User, Skill, Category, Level };
+
+export { entities, entitiesObject };

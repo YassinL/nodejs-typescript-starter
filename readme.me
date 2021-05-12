@@ -130,3 +130,13 @@ class Progress implements IProgress {
     this.level = props.level;
   }
 }
+
+
+ public async createCategories() {
+    return await this.categoryRepo.createCategories()
+  }
+
+  public async createCategories() {
+    const CategoryEntity = this.entities.Category;
+    return await CategoryEntity.create()
+  }

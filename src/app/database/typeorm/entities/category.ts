@@ -23,7 +23,7 @@ export class Category {
   })
   description: string;
 
-  @OneToMany((type) => Skill, (skill) => skill.category)
+  @OneToMany(() => Skill, (skill) => skill.category)
   skills: Skill[];
 
   @CreateDateColumn()
