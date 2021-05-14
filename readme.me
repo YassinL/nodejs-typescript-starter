@@ -131,12 +131,3 @@ class Progress implements IProgress {
   }
 }
 
-
- public async createCategories() {
-    return await this.categoryRepo.createCategories()
-  }
-
-  public async createCategories() {
-    const CategoryEntity = this.entities.Category;
-    return await CategoryEntity.create()
-  }

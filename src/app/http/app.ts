@@ -13,7 +13,7 @@ export const createServer = async (): Promise<express.Application> => {
   const app: express.Application = express();
 
   app.use(express.json());
-  app.use(morgan("combined"));
+  app.use(morgan("dev"));
 
   app.use(`${API_BASE_URL}`, v1Router);
 

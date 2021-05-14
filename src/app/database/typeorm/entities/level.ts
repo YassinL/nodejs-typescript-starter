@@ -5,11 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  BaseEntity,
 } from "typeorm";
 import { Progresse } from "./progresse";
 
 @Entity()
-export class Level {
+export class Level extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: number;
 

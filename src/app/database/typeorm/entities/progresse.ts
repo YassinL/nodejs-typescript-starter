@@ -5,13 +5,14 @@ import {
   UpdateDateColumn,
   JoinColumn,
   ManyToOne,
+  BaseEntity,
 } from "typeorm";
 import { User } from "./user";
 import { Skill } from "./skill";
 import { Level } from "./level";
 
 @Entity()
-export class Progresse {
+export class Progresse extends BaseEntity {
   @PrimaryColumn()
   skillId: number;
 

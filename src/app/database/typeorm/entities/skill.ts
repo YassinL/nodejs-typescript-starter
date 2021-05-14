@@ -7,12 +7,13 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  BaseEntity,
 } from "typeorm";
 import { Category } from "./category";
 import { Progresse } from "./progresse";
 
 @Entity()
-export class Skill {
+export class Skill extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: number;
 
