@@ -12,7 +12,7 @@ export class DeleteUser {
     const deleteUser = await this.userRepo.deleteUser(userId);
     const messageUser = {
       deleteUser,
-      message: "La catégory a bien été supprimé !",
+      message: "Le User a bien été supprimé !",
     };
     return messageUser;
   }

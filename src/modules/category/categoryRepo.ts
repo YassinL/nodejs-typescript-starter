@@ -17,20 +17,26 @@ export class CategoryRepo {
 
   public async getCategories() {
     const CategoryEntity = this.entities.Category;
-    const category = await CategoryEntity.find();
+    const category = await CategoryEntity.find({
+      relations: ["skills"],
+    });
     return category;
   }
 
   public async getCategoryById(id: CategoryParams) {
     const CategoryEntity = this.entities.Category;
-    const category = await CategoryEntity.findOne({ where: { id: id } });
+    const category = await CategoryEntity.findOne({
+      relations: ["skills"],
+      where: { id },
+    });
     return category;
   }
 
   public async editCategory(data: CategoryPropsBody, id: CategoryParams) {
     const CategoryEntity = this.entities.Category;
-    const categoryId = await CategoryEntity.findOne({ where: { id: id } });
-    console.log("get ID ===>", categoryId);
+    const categoryId = await CategoryEntity.findOne({
+      where: { id },
+    });
     if (categoryId) {
       const result = await CategoryEntity.merge(categoryId, data).save();
       return result;
@@ -42,7 +48,6 @@ export class CategoryRepo {
   public async deleteCategory(id: CategoryParams) {
     const CategoryEntity = this.entities.Category;
     const deleteCategory = await CategoryEntity.delete(id);
-    console.log("DELETE REPO", deleteCategory);
     return deleteCategory;
   }
 }

@@ -29,19 +29,19 @@ export class UserRepo {
 
   public async getUserById(id: any) {
     const UserEntity = this.entities.User;
-    const user = await UserEntity.find({ where: { id: id } });
+    const user = await UserEntity.find({ where: { id } });
     return user;
   }
 
   public async getUserByEmail(email: any) {
     const UserEntity = this.entities.User;
-    const user = await UserEntity.find({ where: { email: email } });
+    const user = await UserEntity.find({ where: { email } });
     return user;
   }
 
   public async editUser(data: any, id: any) {
     const UserEntity = this.entities.User;
-    const checkUser = await UserEntity.findOne({ where: { id: id } });
+    const checkUser = await UserEntity.findOne({ where: { id } });
     if (checkUser) {
       const result = await UserEntity.merge(checkUser, data).save();
       return result;
