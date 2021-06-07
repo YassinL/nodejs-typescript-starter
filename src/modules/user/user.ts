@@ -2,32 +2,28 @@
 
 interface IUser {
   id: number;
-  firstname: string;
-  lastname: string;
   email: string;
   password: string;
+  isAdmin: boolean;
 }
 
 type userProps = {
   id: number;
-  firstname: string;
-  lastname: string;
   email: string;
-  passwword: string;
+  password: string;
+  isAdmin: boolean;
 };
 
 export class User implements IUser {
   public id: number;
-  public firstname: string;
-  public lastname: string;
   public email: string;
   public password: string;
+  public isAdmin: boolean;
 
   constructor(props: userProps) {
     this.id = props.id;
-    this.firstname = props.firstname;
-    this.lastname = props.lastname;
     this.email = props.email;
-    this.password = props.passwword;
+    this.password = props.password;
+    this.isAdmin = props.isAdmin;
   }
 }

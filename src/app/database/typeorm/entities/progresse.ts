@@ -7,7 +7,7 @@ import {
   ManyToOne,
   BaseEntity,
 } from "typeorm";
-import { User } from "./user";
+import { Student } from "./student";
 import { Skill } from "./skill";
 import { Level } from "./level";
 
@@ -17,14 +17,14 @@ export class Progresse extends BaseEntity {
   skillId: number;
 
   @PrimaryColumn()
-  userId: number;
+  studentId: number;
 
   @PrimaryColumn()
   levelId: number;
 
-  @ManyToOne(() => User, (user) => user.progresses, { primary: true })
-  @JoinColumn({ name: "userId" })
-  user: User;
+  @ManyToOne(() => Student, (student) => student.progresses, { primary: true })
+  @JoinColumn({ name: "studentId" })
+  student: Student;
 
   @ManyToOne(() => Skill, (skill) => skill.progresses, { primary: true })
   @JoinColumn({ name: "skillId" })

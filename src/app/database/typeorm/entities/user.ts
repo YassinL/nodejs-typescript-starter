@@ -4,34 +4,29 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
   BaseEntity,
+  OneToOne,
 } from "typeorm";
-import { Progresse } from "./progresse";
+import { Student } from "./student";
 
 @Entity()
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: number;
 
-  @Column("varchar", {
-    length: 50,
-  })
-  firstName: string;
-
-  @Column("varchar", {
-    length: 50,
-  })
-  lastName: string;
-
   @Column({ unique: true, name: "email" })
   email!: string;
 
-  @Column()
+  @Column("varchar", {
+    length: 255,
+  })
   password!: string;
 
-  @OneToMany(() => Progresse, (progresse) => progresse.user)
-  progresses: Progresse[];
+  @Column({ default: false })
+  isAdmin: boolean;
+
+  @OneToOne(() => Student, (student) => student.user) // specify inverse side as a second parameter
+  student: Student;
 
   @CreateDateColumn()
   createdAt: Date;

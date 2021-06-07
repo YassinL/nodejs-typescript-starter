@@ -9,15 +9,13 @@ export class UserRepo {
 
   public async createUser(data: any) {
     const UserEntity = this.entities.User;
-    const { firstName, lastName, email, password } = data;
+    const { email, password } = data;
     // const hashedPassword = await hash(password, 10);
     const user = await UserEntity.create({
-      firstName,
-      lastName,
       email,
       password,
     }).save();
-    console.log("USER REPO", user);
+    console.log("user REPO", user);
     return user;
   }
 
@@ -36,6 +34,7 @@ export class UserRepo {
   public async getUserByEmail(email: any) {
     const UserEntity = this.entities.User;
     const user = await UserEntity.find({ where: { email } });
+    console.log("Get user by email", user);
     return user;
   }
 
