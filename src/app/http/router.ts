@@ -1,4 +1,5 @@
 import { Router, Request, Response } from "express";
+import { progresseRouter } from "../../modules/progresse/progresseRouter";
 import { categoryRouter } from "../../modules/category/categoryRouter";
 import { skillRouter } from "../../modules/skill/skillRouter";
 import { userRouter } from "../../modules/user/userRouter";
@@ -12,5 +13,6 @@ v1Router.get("/", (_: Request, response: Response) => {
 v1Router.use("/categories", categoryRouter);
 v1Router.use("/skills", skillRouter);
 v1Router.use("/users", userRouter);
+v1Router.use("/progresses", progresseRouter);
 
 export { v1Router };

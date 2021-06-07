@@ -4,7 +4,7 @@ import { Category } from "./category";
 import { Level } from "./level";
 import { Progresse } from "./progresse";
 
-const entities = [User, Skill, Level, Category, Progresse];
-const entitiesObject = { User, Skill, Category, Level };
+const entities = [Category, User, Skill, Level, Progresse];
+const entitiesObject = { Category, User, Skill, Level, Progresse };
 
 export { entities, entitiesObject };
