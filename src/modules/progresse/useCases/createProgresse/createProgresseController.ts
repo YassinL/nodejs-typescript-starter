@@ -9,8 +9,8 @@ export class CreateProgresseController {
   }
 
   public async execute(request: Request, response: Response) {
-    const { userId, skillId } = request.body;
-    const createProgresse = await this.useCase.createProgresse(userId, skillId);
+    // const { userId, skillId } = request.body;
+    const createProgresse = await this.useCase.createProgresse(request.body);
     response.status(200).json(createProgresse);
   }
 }

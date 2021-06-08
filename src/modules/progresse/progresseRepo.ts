@@ -5,7 +5,7 @@ export class ProgresseRepo {
     this.entities = entities;
   }
 
-  public async createProgress(studentId: any, skillId: any) {
+  public async createProgress(studentId: any, skillId: any, levelId: any) {
     const ProgressEntity = this.entities.Progresse;
     const StudentEntity = this.entities.Student;
     const SkillEntity = this.entities.Skill;
@@ -15,7 +15,7 @@ export class ProgresseRepo {
       where: { id: studentId },
     });
     const findSkill = await SkillEntity.findOne({ where: { id: skillId } });
-    const findLevel = await LevelEntity.findOne({ where: { id: 1 } });
+    const findLevel = await LevelEntity.findOne({ where: { id: levelId } });
 
     const createProgress = await ProgressEntity.create({
       student: findStudent,

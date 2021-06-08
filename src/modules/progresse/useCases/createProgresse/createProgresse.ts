@@ -7,10 +7,12 @@ export class CreateProgresse {
     this.progresseRepo = progresseRepo;
   }
 
-  public async createProgresse(studentId: any, skillId: any) {
+  public async createProgresse(data: any) {
+    const { studentId, skillId, levelId } = data;
     const createProgresse = await this.progresseRepo.createProgress(
       studentId,
-      skillId
+      skillId,
+      levelId
     );
 
     console.log("CREATE PROGRESSE SERVICE", createProgresse);

@@ -1,4 +1,3 @@
-require("dotenv").config();
 import jwt from "jsonwebtoken";
 import { entitiesObject } from "../../../../app/database/typeorm/entities";
 import { UserRepo } from "../../userRepo";
