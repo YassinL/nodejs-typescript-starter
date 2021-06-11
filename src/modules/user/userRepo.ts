@@ -28,7 +28,8 @@ export class UserRepo {
 
   public async getUserById(id: any) {
     const UserEntity = this.entities.User;
-    const user = await UserEntity.find({ where: { id } });
+    const user = await UserEntity.findOne({ where: { id } });
+    console.log("GET USER BY ID", user);
     return user;
   }
 

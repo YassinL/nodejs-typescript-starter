@@ -20,7 +20,12 @@ export const createServer = async (): Promise<express.Application> => {
 
   app.use(express.json());
   app.use(morgan("dev"));
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "http://localhost:1234",
+      credentials: true,
+    })
+  );
   app.use(cookieParser());
 
   app.use(`${API_BASE_URL}`, v1Router);

@@ -25,6 +25,7 @@ export class AuthMiddleWare {
       console.log("Decrypt", decrypt);
 
       request.user = { id: decrypt.id, email: decrypt.id };
+      console.log("Request User", request.user);
       next();
     } catch (err) {
       next(err);
