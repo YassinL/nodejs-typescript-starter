@@ -4,8 +4,12 @@ import { createLevelController } from "./useCases/createLevel";
 
 const levelRouter: Router = Router();
 
-levelRouter.post("/", auth.isAuthentificated, (request, response) => {
-  createLevelController.execute(request, response);
-});
+levelRouter.post(
+  "/",
+  (request, response, next) => auth.isAuthentificated(request, response, next),
+  (request, response) => {
+    createLevelController.execute(request, response);
+  }
+);
 
 export { levelRouter };

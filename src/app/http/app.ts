@@ -2,6 +2,12 @@ import express from "express";
 import { v1Router } from "./router";
 import { API_BASE_URL } from "../../constant";
 
+// cors
+import cors from "cors";
+
+//cookie-parser
+import cookieParser from "cookie-parser";
+
 //Documentation
 import swaggerConfig from "../../middlewares/documentation/swagger.json";
 import swaggerUi from "swagger-ui-express";
@@ -14,6 +20,8 @@ export const createServer = async (): Promise<express.Application> => {
 
   app.use(express.json());
   app.use(morgan("dev"));
+  app.use(cors());
+  app.use(cookieParser());
 
   app.use(`${API_BASE_URL}`, v1Router);
 

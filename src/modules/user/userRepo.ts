@@ -1,5 +1,3 @@
-// import { hash } from "bcrypt";
-
 export class UserRepo {
   private entities: any;
 
@@ -10,13 +8,16 @@ export class UserRepo {
   public async createUser(data: any) {
     const UserEntity = this.entities.User;
     const { email, password } = data;
-    // const hashedPassword = await hash(password, 10);
-    const user = await UserEntity.create({
-      email,
-      password,
-    }).save();
-    console.log("user REPO", user);
-    return user;
+
+    const checkUser = await this.getUserByEmail(email);
+    if (!checkUser) {
+      await UserEntity.create({
+        email,
+        password,
+      }).save();
+    }
+
+    return;
   }
 
   public async getUsers() {
@@ -31,11 +32,18 @@ export class UserRepo {
     return user;
   }
 
-  public async getUserByEmail(email: any) {
+  public async getUserByEmail(email: string) {
     const UserEntity = this.entities.User;
-    const user = await UserEntity.find({ where: { email } });
-    console.log("Get user by email", user);
+    const user = await UserEntity.findOne({ where: { email } });
     return user;
+  }
+
+  public async exists(email: string): Promise<boolean> {
+    const UserEntity = this.entities.User;
+
+    const result = await UserEntity.findOne({ email: email });
+
+    return !!result === true;
   }
 
   public async editUser(data: any, id: any) {

@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from "express";
+import { JwtService } from "../libs/jwtService";
 
 export class AuthMiddleWare {
-  private jwt: any;
+  private jwtService: JwtService;
 
-  constructor(JwtService: any) {
-    this.jwt = JwtService;
+  constructor(jwtService: any) {
+    this.jwtService = jwtService;
   }
 
   public async isAuthentificated(
@@ -12,21 +13,18 @@ export class AuthMiddleWare {
     _: Response,
     next: NextFunction
   ) {
-    console.log("Request", request.headers.cookie);
+    console.log("Request", request.cookies);
     try {
-      //   const token = request.cookies["auth-cookie"];
-      const token = request.headers.cookie || "";
+      const token = request.cookies.token || "";
       console.log("TOKEN", token);
       if (!token) {
         console.log("Votre session a expiré ! ");
       }
 
-      const decrypt = await this.jwt.verifyToken(
-        token,
-        process.env.JWT_SIGN_SECRET
-      );
+      const decrypt = await this.jwtService.verifyToken(token);
+      console.log("Decrypt", decrypt);
 
-      request.currentUser = decrypt.id;
+      request.user = { id: decrypt.id, email: decrypt.id };
       next();
     } catch (err) {
       next(err);

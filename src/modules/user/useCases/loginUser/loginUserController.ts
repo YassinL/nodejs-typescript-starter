@@ -9,8 +9,21 @@ export class LoginUserController {
   }
 
   public async execute(request: Request, response: Response) {
-    const dataUser = request.body;
-    await this.usecase.loginUser(response, dataUser);
-    response.status(201).json({ message: "Connecté" });
+    try {
+      const result = await this.usecase.loginUser(request.body);
+      console.log("RESULT success", result);
+      if (result.success) {
+        response.cookie("token", result.createToken, {
+          maxAge: 3600000,
+          secure: false,
+          httpOnly: true,
+        });
+        response.status(201).json({ message: "Connecté" });
+      } else {
+        response.status(400).json(result.message);
+      }
+    } catch (err) {
+      console.log("create controllers errors :", err);
+    }
   }
 }

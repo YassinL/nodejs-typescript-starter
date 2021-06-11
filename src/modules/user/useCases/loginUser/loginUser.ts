@@ -11,21 +11,38 @@ export class LoginUser {
     this.jwtService = jwtService;
   }
 
-  public async loginUser(res: any, dataUser: any) {
+  public async loginUser(dataUser: any) {
     const { email, password } = dataUser;
-    const userFound = await this.userRepo.getUserByEmail(email);
+    try {
+      const userFound = await this.userRepo.getUserByEmail(email);
+      console.log("USERFOUND", userFound);
+      if (!userFound) {
+        return {
+          success: false,
+          message: "Incorrect Email",
+        };
+      }
 
-    const comparePassword = await compare(password, userFound[0].password);
+      const comparePassword = await compare(password, userFound.password);
+      console.log("COMPARE PASSWORD", comparePassword);
+      if (!comparePassword) {
+        console.log("Mot de passe incorrect");
+        return {
+          success: false,
+          message: "Incorrect Password",
+        };
+      }
+      const createToken = await this.jwtService.generateToken(userFound);
+      console.log("CREATE TOKEN", createToken);
 
-    if (!comparePassword) {
-      console.log("Mot de passe incorrect");
+      return {
+        success: true,
+        createToken,
+      };
+    } catch (err) {
+      return {
+        message: err,
+      };
     }
-    const createToken = await this.jwtService.generateToken(userFound);
-
-    return res.cookie("token", createToken, {
-      maxAge: 3600000,
-      secure: false,
-      httpOnly: true,
-    });
   }
 }
