@@ -13,7 +13,7 @@ export class AuthMiddleWare {
     _: Response,
     next: NextFunction
   ) {
-    console.log("Request", request.cookies);
+    console.log("Request", request);
     try {
       const token = request.cookies.token || "";
       console.log("TOKEN", token);

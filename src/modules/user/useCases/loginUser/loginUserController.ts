@@ -18,6 +18,7 @@ export class LoginUserController {
           secure: false,
           httpOnly: true,
         });
+        console.log("request", request);
         response.status(201).json({ message: "Connecté" });
       } else {
         response.status(400).json(result.message);
